@@ -1,7 +1,14 @@
+import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
+
 const Home = () => {
   return (
     <>
-      <div>Home</div>
+      <Navbar />
+      <div className="home">
+        <div>Home</div>
+      </div>
+      <Footer />
     </>
   );
 };
