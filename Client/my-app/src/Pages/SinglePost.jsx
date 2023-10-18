@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import Menu from "../Components/Menu";
 
 const SinglePost = () => {
   return (
@@ -38,7 +39,7 @@ const SinglePost = () => {
             delectus? Accusantium, voluptatem? A, dicta!
           </p>
         </div>
-        <div className="menu">m</div>
+        <Menu />
       </div>
       <Footer />
     </>
