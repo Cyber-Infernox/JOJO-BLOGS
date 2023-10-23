@@ -15,7 +15,7 @@ const Write = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState(state?.title || "");
-  const [value, setValue] = useState(state?.desc || "");
+  const [desc, setDesc] = useState(state?.desc || "");
   const [file, setFile] = useState("");
   const [cat, setCat] = useState(state?.cat || "");
 
@@ -40,7 +40,7 @@ const Write = () => {
             `${PF}posts/${state.id}`,
             {
               title,
-              desc: value,
+              desc: desc,
               cat,
               img: file ? imgUrl : "",
             },
@@ -50,7 +50,7 @@ const Write = () => {
             `${PF}posts/`,
             {
               title,
-              desc: value,
+              desc: desc,
               cat,
               img: file ? imgUrl : "",
               date: moment(Date.now()).format("YYYY-MM-DD HH:mm::ss"),
@@ -78,8 +78,8 @@ const Write = () => {
             <ReactQuill
               className="editor"
               theme="snow"
-              value={value}
-              onChange={setValue}
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
         </div>

@@ -42,6 +42,12 @@ const SinglePost = () => {
     fetchPost();
   }, [PF, postId]);
 
+  // To remove html tags from a text
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent;
+  };
+
   return (
     <>
       <Navbar />
@@ -64,7 +70,7 @@ const SinglePost = () => {
             )}
           </div>
           <h1>{post.title}</h1>
-          <p>{post.desc}</p>
+          <p>{getText(post.desc)}</p>
         </div>
         <Menu cat={post.cat} />
       </div>
