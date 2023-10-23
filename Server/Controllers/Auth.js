@@ -59,7 +59,6 @@ const login = (req, res) => {
 };
 
 const logout = (req, res) => {
-  res.status(200).json("Logged out");
   res
     .clearCookie("access_token", {
       sameSite: "none",

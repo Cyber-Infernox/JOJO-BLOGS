@@ -9,6 +9,7 @@ import { AuthContext } from "../Context/authContext";
 
 const SinglePost = () => {
   const PF = process.env.REACT_APP_SERVER_END;
+  const filePath = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [post, setPost] = useState({});
 
@@ -46,7 +47,7 @@ const SinglePost = () => {
       <Navbar />
       <div className="single">
         <div className="content">
-          <img src={post?.img} alt="" />
+          <img src={`${filePath}${post?.img}`} alt="" />
           <div className="user">
             {post.userImg && <img src={post.userImg} alt="" />}
             <div className="info">

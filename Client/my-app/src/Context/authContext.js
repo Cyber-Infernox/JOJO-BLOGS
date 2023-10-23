@@ -18,7 +18,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await axios.post(PF + "auth/logout");
+    await axios.post(PF + "auth/logout", {}, { withCredentials: true }); // To delete cookies
     setCurrentUser(null);
   };
 

@@ -28,7 +28,6 @@ const getPost = (req, res) => {
 };
 
 const addPost = (req, res) => {
-  // res.json("This is post");
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
 
