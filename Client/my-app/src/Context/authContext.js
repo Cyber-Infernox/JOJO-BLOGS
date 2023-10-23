@@ -11,7 +11,9 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (inputs) => {
-    const res = await axios.post(PF + "auth/login", inputs);
+    const res = await axios.post(PF + "auth/login", inputs, {
+      withCredentials: true, // To save cookies - Also change in the CORS section
+    });
     setCurrentUser(res.data);
   };
 

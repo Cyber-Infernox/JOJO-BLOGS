@@ -13,7 +13,11 @@ const postRoutes = require("./Routes/Post");
 // Middlewares
 app.use(express.json()); // BodyParser for POST requests
 app.use(cookieParser());
-app.use(cors()); // For interaction between client and server which are in different ports
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true, //access-control-allow-credentials:true
+};
+app.use(cors(corsOptions)); // For interaction between client and server which are in different ports
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
