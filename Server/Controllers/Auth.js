@@ -1,5 +1,9 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const { db } = require("../Db");
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 const register = (req, res) => {
   // Check existing user
@@ -25,11 +29,44 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  res.json("This is login");
+  // Check existing user
+  const q = "SELECT * FROM users WHERE email = ?";
+
+  db.query(q, [req.body.email], (err, data) => {
+    if (err) return res.status(500).json(err);
+    if (data.length === 0) return res.status(404).json("User does not exist");
+
+    // Check password
+    const isPasswordCorrect = bcrypt.compareSync(
+      req.body.password,
+      data[0].password
+    );
+
+    if (!isPasswordCorrect) return res.status(400).json("Wrong password!");
+
+    const token = jwt.sign({ id: data[0].id }, process.env.ACCESS_KEY);
+    const { password, ...other } = data[0];
+
+    console.log(other);
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json(other);
+  });
 };
 
 const logout = (req, res) => {
-  res.json("This is logout");
+  res.status(200).json("Logged out");
+  res
+    .clearCookie("access_token", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("User has been logged out");
 };
 
 module.exports = {

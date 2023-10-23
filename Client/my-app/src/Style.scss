@@ -10,8 +10,8 @@ $lightGreen: #b9e7e7;
       text-decoration: none;
       color: inherit;
     }
+    //LOGIN & REGISTER
 
-    // LOGIN & REGISTER
     .auth {
       display: flex;
       flex-direction: column;
@@ -33,35 +33,36 @@ $lightGreen: #b9e7e7;
         background-color: white;
         width: 200px;
         gap: 20px;
-      }
 
-      input {
-        padding: 10px;
-        border: none;
-        border-bottom: 1px solid gray;
-      }
+        input {
+          padding: 10px;
+          border: none;
+          border-bottom: 1px solid gray;
+        }
 
-      button {
-        padding: 10px;
-        border: none;
-        background-color: teal;
-        cursor: pointer;
-        color: white;
-      }
+        button {
+          padding: 10px;
+          border: none;
+          background-color: teal;
+          cursor: pointer;
+          color: white;
+        }
 
-      p {
-        font-size: 12px;
-        color: red;
-        text-align: center;
-      }
+        p {
+          font-size: 12px;
+          color: red;
+          text-align: center;
+        }
 
-      span {
-        font-size: 12px;
-        text-align: center;
+        span {
+          font-size: 12px;
+          text-align: center;
+        }
       }
     }
 
-    // NAVBAR
+    //NAVBAR
+
     .navbar {
       .container {
         padding: 10px 0px;
@@ -96,11 +97,10 @@ $lightGreen: #b9e7e7;
             align-items: center;
             justify-content: center;
             font-weight: 300;
+            border: 1px solid white;
 
             &:hover {
               color: teal;
-              width: 48px;
-              height: 48px;
               background-color: white;
               border: 1px solid teal;
             }
@@ -109,7 +109,8 @@ $lightGreen: #b9e7e7;
       }
     }
 
-    // FOOTER
+    //FOOTER
+
     footer {
       margin-top: 100px;
       padding: 20px;
@@ -123,7 +124,8 @@ $lightGreen: #b9e7e7;
       }
     }
 
-    // HOME
+    //HOME
+
     .home {
       .posts {
         margin-top: 50px;
@@ -150,7 +152,7 @@ $lightGreen: #b9e7e7;
               background-color: $lightGreen;
               position: absolute;
               top: 20px;
-              right: 20px;
+              left: -20px;
               z-index: -1;
             }
 
@@ -187,6 +189,7 @@ $lightGreen: #b9e7e7;
               &:hover {
                 border: 1px solid white;
                 background-color: $lightGreen;
+                color: black;
               }
             }
           }
@@ -194,16 +197,17 @@ $lightGreen: #b9e7e7;
       }
     }
 
-    // SINGLE
+    //SINGLE
+
     .single {
       display: flex;
-      // gap: 50px;
+      gap: 50px;
 
       .content {
         flex: 5;
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
 
         img {
           width: 100%;
@@ -216,42 +220,26 @@ $lightGreen: #b9e7e7;
           align-items: center;
           gap: 10px;
           font-size: 14px;
-
           img {
             width: 50px;
             height: 50px;
-            border-radius: 50;
+            border-radius: 50%;
             object-fit: cover;
           }
 
           span {
             font-weight: bold;
           }
+        }
 
-          button {
-            width: max-content;
-            padding: 10px 20px;
-            border: none;
+        .edit {
+          display: flex;
+          gap: 5px;
+
+          img {
+            width: 20px;
+            height: 20px;
             cursor: pointer;
-            background-color: white;
-            border: 1px solid teal;
-            color: teal;
-
-            &:hover {
-              border: 1px solid white;
-              background-color: $lightGreen;
-            }
-          }
-
-          .edit {
-            display: flex;
-            gap: 5px;
-
-            img {
-              width: 20px;
-              height: 20px;
-              cursor: pointer;
-            }
           }
         }
 
@@ -265,7 +253,6 @@ $lightGreen: #b9e7e7;
           line-height: 30px;
         }
       }
-
       .menu {
         flex: 2;
         display: flex;
@@ -294,12 +281,12 @@ $lightGreen: #b9e7e7;
 
           button {
             width: max-content;
-            padding: 10px 20px;
+            padding: 7.5px 15px;
             border: none;
             cursor: pointer;
+            color: teal;
             background-color: white;
             border: 1px solid teal;
-            color: teal;
 
             &:hover {
               border: 1px solid white;
@@ -312,6 +299,7 @@ $lightGreen: #b9e7e7;
     }
 
     // WRITE
+
     .writeBlog {
       margin-top: 20px;
       display: flex;

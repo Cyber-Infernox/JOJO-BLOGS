@@ -1,45 +1,71 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import Menu from "../Components/Menu";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import moment from "moment";
+import { AuthContext } from "../Context/authContext";
 
 const SinglePost = () => {
+  const PF = process.env.REACT_APP_SERVER_END;
+
+  const [post, setPost] = useState({});
+
+  const location = useLocation();
+  const postId = location.pathname.split("/")[2];
+
+  const { currentUser } = useContext(AuthContext);
+  const { navigate } = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${PF}posts/${postId}`);
+      // setPost({});
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const res = await axios.get(`${PF}posts/${postId}`);
+        setPost(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchPost();
+  }, [PF, postId]);
+
   return (
     <>
       <Navbar />
       <div className="single">
         <div className="content">
-          <img src="" alt="" />
+          <img src={post?.img} alt="" />
           <div className="user">
-            <img src="" alt="" />
+            {post.userImg && <img src={post.userImg} alt="" />}
             <div className="info">
-              <span>John</span>
-              <p>Posted 2 days ago</p>
+              <span>{post.username}</span>
+              <p>Posted {moment(post.date).fromNow()}</p>
             </div>
-            <div className="edit">
-              <Link to={`/write?edit=2`}>
-                <button>Edit</button>
-              </Link>
-              <button>Delete</button>
-            </div>
+            {currentUser && currentUser.username === post.username && (
+              <div className="edit">
+                <Link to={`/write?edit=2`} state={post}>
+                  <button>Edit</button>
+                </Link>
+                <button onClick={handleDelete}>Delete</button>
+              </div>
+            )}
           </div>
-          <h1>Lorem ipsum dolor sit amet</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-            iure repudiandae aliquam mollitia voluptatibus. Vero distinctio
-            maxime delectus a soluta, saepe architecto atque illo exercitationem
-            nostrum doloremque debitis quaerat accusantium aliquid labore iusto
-            veniam suscipit consequatur, magni maiores repudiandae! Ducimus illo
-            incidunt quisquam impedit ipsam odit quis cupiditate illum, libero
-            corrupti, esse dolor pariatur numquam suscipit magni cumque nobis
-            nemo consequuntur aut exercitationem ratione! Rerum tenetur dolorem
-            nulla quisquam illo, sapiente odit eum, cupiditate assumenda dolores
-            fugiat deserunt esse nam aliquid at illum inventore optio obcaecati!
-            Ipsa eos consequatur repellat optio a explicabo mollitia illo
-            delectus? Accusantium, voluptatem? A, dicta!
-          </p>
+          <h1>{post.title}</h1>
+          <p>{post.desc}</p>
         </div>
-        <Menu />
+        <Menu cat={post.cat} />
       </div>
       <Footer />
     </>
