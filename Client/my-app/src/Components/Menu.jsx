@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 const Menu = ({ cat }) => {
   const PF = process.env.REACT_APP_SERVER_END;
+  const filePath = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // const posts = [
   //   {
@@ -52,7 +53,7 @@ const Menu = ({ cat }) => {
         <h1>Other posts you may like</h1>
         {posts.map((post) => (
           <div className="post" key={post.id}>
-            <img src={post.img} alt="" />
+            <img src={`${filePath}${post?.img}`} alt="" />
             <h2>{post.title}</h2>
             <button>Read More</button>
           </div>

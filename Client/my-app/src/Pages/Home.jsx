@@ -6,6 +6,7 @@ import axios from "axios";
 
 const Home = () => {
   const PF = process.env.REACT_APP_SERVER_END;
+  const filePath = process.env.REACT_APP_PUBLIC_FOLDER;
 
   // const posts = [
   //   {
@@ -66,7 +67,7 @@ const Home = () => {
           {posts.map((post) => (
             <div className="post" key={post.id}>
               <div className="img">
-                <img src={post.img} alt="" />
+                <img src={`${filePath}${post.img}`} alt="" />
               </div>
               <div className="content">
                 <Link className="link" to={`/post/${post.id}`}>

@@ -17,11 +17,11 @@ const SinglePost = () => {
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${PF}posts/${postId}`);
+      await axios.delete(`${PF}posts/${postId}`, { withCredentials: true });
       // setPost({});
       navigate("/");
     } catch (error) {
